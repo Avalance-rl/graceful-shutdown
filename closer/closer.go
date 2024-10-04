@@ -3,6 +3,7 @@ package closer
 import (
 	"context"
 	"fmt"
+	"strings"
 	"sync"
 )
 
@@ -58,6 +59,7 @@ func (c *Closer) Close(ctx context.Context) error {
 	}
 
 	if len(msgs) > 0 {
+		return fmt.Errorf("shutdown funished with error(s): \n%v", strings.Join(msgs, "\n"))
 	}
 
 	return nil
